@@ -12,14 +12,18 @@
 #
 
 class Task < ActiveRecord::Base
-  attr_accessible :description, :title, :project_id
+  attr_accessible :description, :title, :project_id, :status_id, :type_id
 
   validates :title, :presence => true, :length => { :maximum => 30 }
   validates :description, :presence => true, :length => { :maximum => 500 }
   validates :project_id, :presence => true
-  #validates :sequence, :presence => true
+  validates :status_id, :presence => true
+  validates :type_id, :presence => true
+  
 
-  #default_scope :order => 'tasks.sequence DESC'
+  #default_scope :order => 'tasks.created_at DESC'
 
   belongs_to :project
+  belongs_to :status
+  belongs_to :type
 end

@@ -1,4 +1,17 @@
 <%= form_for @project, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <% if @project.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+      <ul>
+      <% @product.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="control-group">
     <%= f.label :title, :class => 'control-label' %>
     <div class="controls">
@@ -8,7 +21,7 @@
   <div class="control-group">
     <%= f.label :description, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :description, :class => 'text_area' %>
+      <%= f.text_area :description, :class => 'text_area', rows: 5 %>
     </div>
   </div>
 

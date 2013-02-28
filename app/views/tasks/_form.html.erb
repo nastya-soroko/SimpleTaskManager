@@ -8,7 +8,21 @@
   <div class="control-group">
     <%= f.label :description, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_area :description, :class => 'text_area' %>
+      <%= f.text_area :description, :class => 'text_area', rows: 5 %>
+    </div>
+  </div>
+  <% types = Type.all.map{|t| [t.name, t.id]}  %>
+  <div class="control-group">
+    <%= f.label :type, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :type_id, options_for_select(types) , :prompt => 'choose type', :class => 'select' %>
+    </div>
+  </div>
+  <% statuses = Status.all.map{|s| [s.name, s.id]}  %>
+  <div class="control-group">
+    <%= f.label :status, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.select :status_id, options_for_select(statuses) , :prompt => 'choose status', :class => 'select' %>
     </div>
   </div>
    <%= f.hidden_field :project_id%>
@@ -16,6 +30,6 @@
   <div class="form-actions">
     <%= f.submit nil, :class => 'btn btn-primary' %>
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-                tasks_path, :class => 'btn' %>
+                project_path(@task.project), :class => 'btn' %>
   </div>
 <% end %>
