@@ -2,43 +2,46 @@
 <div class="page-header">
   <h1><%=t '.title', :default => @project.title %></h1>
   <h4><%= @project.description %></h4>
-</div>
-
-<h2> Project tasks:</h2>
-
-<table class="table table-striped">
-  <thead>
-  <tr>
-    <th><%= model_class.human_attribute_name(:type) %></th>
-    <th><%= model_class.human_attribute_name(:title) %></th>
-    <th><%= model_class.human_attribute_name(:description) %></th>
-    <th><%= model_class.human_attribute_name(:status) %></th>
-    <th><%= model_class.human_attribute_name(:created_at) %></th>
-    <!--<th><%#=t '.actions', :default => t("helpers.actions") %></th>-->
-  </tr>
-  </thead>
-  <tbody>
-  <% @project.tasks.each do |task| %>
-      <tr>
-        <td><%= task.type.name %></td>
-        <td><%= link_to task.title,task_path(task) %></td>
-        <td><%= task.description %></td>
-        <td><%= task.status.name %></td>
-        <td><%= task.created_at %></td>
-        <!--<td>
-          <%#= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_task_path(task), :class => 'btn btn-mini' %>
-          <%#= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      task_path(task),
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_project_path(@project), :class => 'btn btn-primary' %>
+          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      project_path(@project),
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>-->
-      </tr>
-  <% end %>
-  </tbody>
-</table>
+                      :class => 'btn btn-primary btn-danger' %>
+
+<h2>Tasks:</h2>
 
 <%= link_to t('.new', :default => t("helpers.links.new")),
             new_task_path(:project_id => @project),
             :class => 'btn btn-primary' %>
+</div>
+
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th></td>
+    <th><%= model_class.human_attribute_name(:type) %></th>
+    <th><%= model_class.human_attribute_name(:title) %></th>
+    <th><%= model_class.human_attribute_name(:status) %></th>
+    <th><%= model_class.human_attribute_name(:updated_at) %></th>
+  </tr>
+  </thead>
+  <tbody id="tasks_list">
+  <% @tasks.each do |task| %>
+      <tr id="task_<%= task.id %>" class="handle" >
+        <td><%= link_to "open task",task_path(task) %></td>
+        <td><%= task.type.name %></td>
+        <td><%= task.title %></td>
+        <td><%= task.status.name %></td>
+        <td><%= task.updated_at %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= will_paginate @tasks %>
+<input type="hidden" id="project_id" value='<%=@project.id%>'>
+
+
+
+

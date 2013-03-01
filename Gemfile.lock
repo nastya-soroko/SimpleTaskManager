@@ -28,6 +28,8 @@ GEM
     activesupport (3.2.3)
       i18n (~> 0.6)
       multi_json (~> 1.0)
+    acts_as_list (0.2.0)
+      activerecord (>= 3.0)
     annotate (2.5.0)
       rake
     arel (3.0.2)
@@ -52,6 +54,13 @@ GEM
     eventmachine (0.12.10)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    factory_girl (3.2.0)
+      activesupport (>= 3.0.0)
+    factory_girl_rails (3.2.0)
+      factory_girl (~> 3.2.0)
+      railties (>= 3.0.0)
+    faker (1.0.1)
+      i18n (~> 0.4)
     hike (1.2.1)
     i18n (0.6.2)
     journey (1.0.4)
@@ -148,14 +157,19 @@ GEM
       rack (>= 1.0)
       rack-test (>= 0.5.3)
     will_paginate (3.0.3)
+    will_paginate-bootstrap (0.2.2)
+      will_paginate (>= 3.0.3)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts_as_list
   annotate
   coffee-rails (~> 3.2.1)
   devise
+  factory_girl_rails
+  faker
   jquery-rails
   less-rails
   rails (= 3.2.3)
@@ -168,3 +182,4 @@ DEPENDENCIES
   uglifier (>= 1.0.3)
   webrat
   will_paginate
+  will_paginate-bootstrap

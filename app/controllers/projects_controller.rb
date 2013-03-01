@@ -1,9 +1,10 @@
+
 class ProjectsController < ApplicationController
   # GET /projects
   # GET /projects.json
   def index
-    @projects = Project.all
-
+    @projects = Project.paginate(:page=>params[:page],:per_page=>15)
+ 
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @projects }
@@ -14,6 +15,8 @@ class ProjectsController < ApplicationController
   # GET /projects/1.json
   def show
     @project = Project.find(params[:id])
+    @tasks=@project.tasks.paginate(:page=>params[:page],:per_page=>15)
+   
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @project }
@@ -79,4 +82,15 @@ class ProjectsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def sort_tasks
+    project = Project.find(params[:id])
+    tasks = project.tasks
+    tasks.each do |task|
+      task.position = params['task'].index(task.id.to_s) + 1
+      task.save
+    end
+    render :nothing => true
+  end
+
 end

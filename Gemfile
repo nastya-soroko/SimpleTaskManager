@@ -24,16 +24,21 @@ end
 group :development do
   gem "thin"
   gem 'rspec-rails'
+  #gem 'cucumber'
   gem 'annotate'
+  gem 'faker'
 end
 
 group :test do
   gem 'rspec-rails'
   gem 'webrat'
+  gem 'factory_girl_rails'
 end
+gem 'acts_as_list'
 
 gem 'devise'
 gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 gem 'jquery-rails'
 
 # To use ActiveModel has_secure_password

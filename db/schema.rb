@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130228085320) do
+ActiveRecord::Schema.define(:version => 20130228211645) do
 
   create_table "projects", :force => true do |t|
     t.string   "title"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20130228085320) do
     t.integer  "project_id"
     t.integer  "type_id"
     t.integer  "status_id"
+    t.integer  "position"
   end
 
   add_index "tasks", ["created_at"], :name => "index_tasks_on_created_at"

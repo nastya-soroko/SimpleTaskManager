@@ -1,14 +1,4 @@
 class TasksController < ApplicationController
-  # GET /tasks
-  # GET /tasks.json
-  def index
-    @tasks = Task.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @tasks }
-    end
-  end
 
   # GET /tasks/1
   # GET /tasks/1.json
@@ -24,7 +14,7 @@ class TasksController < ApplicationController
   # GET /tasks/new
   # GET /tasks/new.json
   def new
-    @task = Task.new( :project_id=> params[:project_id])
+    @task = Task.new(:project_id=> params[:project_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -60,7 +50,7 @@ class TasksController < ApplicationController
 
     respond_to do |format|
       if @task.update_attributes(params[:task])
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
+        format.html { redirect_to project_path(@task.project), notice: 'Task was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -73,11 +63,10 @@ class TasksController < ApplicationController
   # DELETE /tasks/1.json
   def destroy
     @task = Task.find(params[:id])
-    #@project-@task.project
     @task.destroy
 
     respond_to do |format|
-      format.html { redirect_to projects_url(@task.project) }
+      format.html { redirect_to project_url(@task.project) }
       format.json { head :no_content }
     end
   end

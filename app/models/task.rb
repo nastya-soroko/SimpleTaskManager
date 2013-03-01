@@ -8,7 +8,8 @@
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  project_id  :integer
-#  sequence    :integer
+#  type_id     :integer
+#  status_id   :integer
 #
 
 class Task < ActiveRecord::Base
@@ -21,9 +22,11 @@ class Task < ActiveRecord::Base
   validates :type_id, :presence => true
   
 
-  #default_scope :order => 'tasks.created_at DESC'
+  default_scope :order => 'tasks.updated_at DESC'
 
   belongs_to :project
   belongs_to :status
   belongs_to :type
+
+  acts_as_list scope: :project
 end
