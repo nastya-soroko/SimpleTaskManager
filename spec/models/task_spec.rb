@@ -22,7 +22,8 @@ describe Task do
     			:description => "example description bla bla bla", 
     			:project_id => @project.id,
     			:status_id => FactoryGirl.create(:status).id,
-    			:type_id => FactoryGirl.create(:type).id
+    			:type_id => FactoryGirl.create(:type).id,
+    			:position => 343
     		}
   end
 
@@ -32,11 +33,12 @@ describe Task do
       @task = @project.tasks.create({ 	:title => "example task", 
     									:description => "example description bla bla bla", 
 					    				:status_id => FactoryGirl.create(:status).id,
-					    				:type_id => FactoryGirl.create(:type).id
+					    				:type_id => FactoryGirl.create(:type).id,
+					    				:position => 456
     								})
     end
 
-    it "should have a user attribute" do
+    it "should have a project attribute" do
       @task.should respond_to(:project)
     end
 

@@ -15,6 +15,7 @@ FactoryGirl.define do
   factory :task do
   	title				"Example task"
   	description			"exmple descr"
+    position       123
   	association 		:project
   	association 		:type
   	association 		:status
