@@ -38,6 +38,7 @@ group :test do
   gem 'webrat'
   gem 'factory_girl_rails'
 end
+
 gem 'acts_as_list'
 
 gem 'devise'

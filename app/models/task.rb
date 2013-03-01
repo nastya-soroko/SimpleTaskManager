@@ -22,7 +22,7 @@ class Task < ActiveRecord::Base
   validates :type_id, :presence => true
   
 
-  default_scope :order => 'tasks.updated_at DESC'
+  #default_scope :order => 'tasks.updated_at DESC'
 
   belongs_to :project
   belongs_to :status
