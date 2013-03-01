@@ -16,5 +16,6 @@ class Project < ActiveRecord::Base
 
   has_many :tasks, order: :position
 
+  default_scope :order => 'projects.updated_at DESC'
   
 end
