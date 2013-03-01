@@ -26,7 +26,7 @@ def make_tasks
     50.times do |n|
       title  = "task number #{n+1}"
       descr = Faker::Lorem.sentences(5)
-      project.tasks.create!(:title => title, :description => descr,:status_id => [1,2,4,5,6].sample, :type_id => [1,2].sample)
+      project.tasks.create!(:title => title, :description => descr,:status_id => rand(1..5), :type_id => rand(1..2))
     end
   end
 end

@@ -2,6 +2,12 @@
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
 # Examples:
-#
-  cities = Project.create([{ name: 'Chicago', description:"gdfhfgh" }, { name: 'Copenhagen', description:"ygfdugyfg" }])
+ Type.create(name: 'bug')
+ Type.create(name: 'task')
+
+ Status.create(name: 'new')
+ Status.create(name: 'active')
+ Status.create(name: 'inactive')
+ Status.create(name: 'resolved')
+ Status.create(name: 'completed')
 #   Mayor.create(name: 'Emanuel', city: cities.first)
